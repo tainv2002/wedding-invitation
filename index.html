@@ -505,6 +505,207 @@
           text-align: center;
         }
       }
+
+      /* RSVP Modal */
+      .rsvp-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      .rsvp-modal.active {
+        display: flex;
+      }
+
+      .rsvp-modal-content {
+        background: white;
+        border-radius: 16px;
+        padding: 2.5rem;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 10px 40px rgba(44, 74, 51, 0.3);
+        position: relative;
+        animation: modalFadeIn 0.3s ease;
+      }
+
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .rsvp-modal-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .rsvp-modal-header h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        color: var(--moss-green);
+        margin-bottom: 0.5rem;
+      }
+
+      .rsvp-modal-header p {
+        color: var(--sage);
+        font-size: 0.95rem;
+      }
+
+      .rsvp-form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .rsvp-form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--moss-dark);
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      .rsvp-form-group input {
+        width: 100%;
+        padding: 0.875rem 1rem;
+        border: 2px solid var(--sage);
+        border-radius: 8px;
+        font-size: 1rem;
+        font-family: "Montserrat", sans-serif;
+        transition: all 0.3s ease;
+        color: var(--moss-dark);
+      }
+
+      .rsvp-form-group input:focus {
+        outline: none;
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+      }
+
+      .rsvp-modal-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .rsvp-modal-actions button {
+        flex: 1;
+        padding: 0.875rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+      }
+
+      .btn-submit {
+        background: linear-gradient(
+          135deg,
+          var(--moss-green) 0%,
+          var(--moss-dark) 100%
+        );
+        color: white;
+      }
+
+      .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(53, 94, 59, 0.3);
+      }
+
+      .btn-cancel {
+        background: #f3f4f6;
+        color: var(--moss-dark);
+      }
+
+      .btn-cancel:hover {
+        background: #e5e7eb;
+      }
+
+      /* QR Modal */
+      .qr-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      .qr-modal.active {
+        display: flex;
+      }
+
+      .qr-modal-content {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 400px;
+        width: 100%;
+        box-shadow: 0 10px 40px rgba(44, 74, 51, 0.3);
+        position: relative;
+        text-align: center;
+        animation: modalFadeIn 0.3s ease;
+      }
+
+      .qr-modal-content img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        border-radius: 8px;
+        margin: 1rem auto;
+        display: block;
+      }
+
+      .qr-modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--moss-green);
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
+      .qr-modal-close:hover {
+        background: #f3f4f6;
+        color: var(--moss-dark);
+      }
+
+      .qr-section-link {
+        cursor: pointer;
+        color: var(--gold);
+        text-decoration: underline;
+        transition: color 0.3s ease;
+      }
+
+      .qr-section-link:hover {
+        color: var(--gold-light);
+      }
     </style>
   </head>
   <body>
@@ -598,7 +799,7 @@
       <div class="section-bg-content">
         <div class="max-w-6xl mx-auto">
           <h2 class="section-title text-white reveal text-center">
-            Ngày Vui Của Chúng Tôi
+            Ngày Vui Của Chúng Mình
           </h2>
           <div class="leaf-divider" style="background: var(--gold)"></div>
 
@@ -663,7 +864,7 @@
     <section class="bg-pattern">
       <div class="max-w-7xl mx-auto">
         <h2 class="section-title text-center reveal">
-          Khoảnh Khắc Của Chúng Tôi
+          Khoảnh Khắc Của Chúng Mình
         </h2>
         <div class="leaf-divider"></div>
 
@@ -791,14 +992,23 @@
 
         <div class="reveal mt-8">
           <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
-            Sự hiện diện của quý khách là niềm vinh hạnh cho gia đình chúng
-            tôi.<br />
+            Sự hiện diện của các bạn là niềm vinh hạnh cho gia đình chúng
+            mình.<br />
             Vui lòng xác nhận tham dự trước ngày <strong>25/12/2025</strong>.
           </p>
 
           <button onclick="handleRSVP()" class="btn-primary btn-gold text-lg">
             Xác Nhận Ngay ✨
           </button>
+        </div>
+
+        <div class="reveal mt-8">
+          <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+            📱 Nếu ở xa và mong muốn gửi tình yêu thương cho dâu rể,
+            <span class="qr-section-link" onclick="openQRModal()"
+              >bấm vào đây để xem mã QR</span
+            >.
+          </p>
         </div>
       </div>
     </section>
@@ -807,8 +1017,8 @@
     <section class="bg-moss text-white text-center">
       <div class="max-w-4xl mx-auto reveal">
         <p class="text-lg md:text-xl mb-6 leading-relaxed">
-          Chúng tôi rất mong được chia sẻ niềm hạnh phúc này cùng quý khách.<br />
-          Cảm ơn quý khách đã luôn ở bên và chúc phúc cho chúng tôi.
+          Chúng mình rất mong được chia sẻ niềm hạnh phúc này cùng các bạn.<br />
+          Cảm ơn các bạn đã luôn ở bên và chúc phúc cho chúng mình.
         </p>
 
         <div class="leaf-divider" style="background: var(--gold)"></div>
@@ -827,6 +1037,78 @@
         <div class="mt-12 text-6xl">❦</div>
       </div>
     </section>
+
+    <!-- RSVP Modal -->
+    <div id="rsvpModal" class="rsvp-modal">
+      <div class="rsvp-modal-content">
+        <div class="rsvp-modal-header">
+          <h3>Xác Nhận Tham Dự</h3>
+          <p>Vui lòng nhập tên của bạn</p>
+        </div>
+        <form id="rsvpForm" onsubmit="handleRSVPSubmit(event)">
+          <div class="rsvp-form-group">
+            <label for="guestName">Tên của bạn *</label>
+            <input
+              type="text"
+              id="guestName"
+              name="guestName"
+              placeholder="Nhập tên của bạn"
+              required
+              autofocus
+            />
+          </div>
+          <div class="rsvp-form-group">
+            <label for="guestWishes">Lời chúc (tùy chọn)</label>
+            <textarea
+              id="guestWishes"
+              name="guestWishes"
+              placeholder="Gửi lời chúc mừng đến dâu rể..."
+              rows="4"
+              style="
+                width: 100%;
+                padding: 0.875rem 1rem;
+                border: 2px solid var(--sage);
+                border-radius: 8px;
+                font-size: 1rem;
+                font-family: 'Montserrat', sans-serif;
+                transition: all 0.3s ease;
+                color: var(--moss-dark);
+                resize: vertical;
+              "
+              onfocus="this.style.borderColor='var(--gold)'; this.style.boxShadow='0 0 0 3px rgba(212, 175, 55, 0.1)';"
+              onblur="this.style.borderColor='var(--sage)'; this.style.boxShadow='none';"
+            ></textarea>
+          </div>
+          <div class="rsvp-modal-actions">
+            <button type="button" class="btn-cancel" onclick="closeRSVPModal()">
+              Hủy
+            </button>
+            <button type="submit" class="btn-submit">Xác Nhận ✨</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- QR Modal -->
+    <div id="qrModal" class="qr-modal">
+      <div class="qr-modal-content">
+        <button class="qr-modal-close" onclick="closeQRModal()">×</button>
+        <h3
+          style="
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--moss-green);
+            margin-bottom: 1rem;
+          "
+        >
+          Mã QR Gửi Lời Chúc
+        </h3>
+        <p style="color: var(--sage); font-size: 0.9rem; margin-bottom: 1rem">
+          Quét mã QR để gửi tình yêu thương đến dâu rể
+        </p>
+        <img src="./images/qr.jpg" alt="QR Code" />
+      </div>
+    </div>
 
     <script>
       // Countdown Timer
@@ -898,12 +1180,82 @@
         }, 300);
       });
 
-      // RSVP Function
+      // RSVP Modal Functions
       function handleRSVP() {
-        alert(
-          "Cảm ơn quý khách đã xác nhận tham dự!\n\nChúng tôi rất vui mừng được đón tiếp quý khách tại tiệc cưới.\n\n💚 Tài & Huyền 💛"
-        );
+        const modal = document.getElementById("rsvpModal");
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
       }
+
+      function closeRSVPModal() {
+        const modal = document.getElementById("rsvpModal");
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+        document.getElementById("rsvpForm").reset();
+      }
+
+      function handleRSVPSubmit(event) {
+        event.preventDefault();
+        const nameInput = document.getElementById("guestName");
+        const wishesInput = document.getElementById("guestWishes");
+        const guestName = nameInput.value.trim();
+        const wishes = wishesInput.value.trim();
+
+        if (guestName) {
+          let message = `Cảm ơn ${guestName} đã xác nhận tham dự!\n\nChúng mình rất vui mừng được đón tiếp bạn tại tiệc cưới.`;
+          if (wishes) {
+            message += `\n\nLời chúc của bạn: "${wishes}"`;
+          }
+          message += `\n\n💚 Tài & Huyền 💛`;
+          alert(message);
+          closeRSVPModal();
+        }
+      }
+
+      // Close modal when clicking outside
+      document
+        .getElementById("rsvpModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeRSVPModal();
+          }
+        });
+
+      // Close modal with Escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          const rsvpModal = document.getElementById("rsvpModal");
+          const qrModal = document.getElementById("qrModal");
+          if (rsvpModal.classList.contains("active")) {
+            closeRSVPModal();
+          }
+          if (qrModal.classList.contains("active")) {
+            closeQRModal();
+          }
+        }
+      });
+
+      // QR Modal Functions
+      function openQRModal() {
+        const modal = document.getElementById("qrModal");
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeQRModal() {
+        const modal = document.getElementById("qrModal");
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      // Close QR modal when clicking outside
+      document
+        .getElementById("qrModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeQRModal();
+          }
+        });
 
       // Smooth Scroll for Better UX
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
