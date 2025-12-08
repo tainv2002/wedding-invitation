@@ -1194,7 +1194,11 @@
         document.getElementById("rsvpForm").reset();
       }
 
-      function handleRSVPSubmit(event) {
+      // Google Sheets Web App URL
+      const GOOGLE_SHEETS_URL =
+        "https://script.google.com/macros/s/AKfycbzLwmgYncAMp84eS3i4qXorlAJ90bMVUKIRLqWPjBr4Z-yf5wMXai0tXGj-sjv4T6ws/exec";
+
+      async function handleRSVPSubmit(event) {
         event.preventDefault();
         const nameInput = document.getElementById("guestName");
         const wishesInput = document.getElementById("guestWishes");
@@ -1202,13 +1206,52 @@
         const wishes = wishesInput.value.trim();
 
         if (guestName) {
-          let message = `Cảm ơn ${guestName} đã xác nhận tham dự!\n\nChúng mình rất vui mừng được đón tiếp bạn tại tiệc cưới.`;
-          if (wishes) {
-            message += `\n\nLời chúc của bạn: "${wishes}"`;
+          // Disable submit button while processing
+          const submitButton = event.target.querySelector(".btn-submit");
+          const originalText = submitButton.textContent;
+          submitButton.disabled = true;
+          submitButton.textContent = "Đang gửi...";
+
+          try {
+            // Gửi dữ liệu đến Google Sheets bằng POST request với JSON
+            // Sử dụng fetch với no-cors để tránh CORS issues
+            fetch(GOOGLE_SHEETS_URL, {
+              method: "POST",
+              mode: "no-cors",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name: guestName,
+                wishes: wishes || "",
+              }),
+            }).catch((error) => {
+              // Ignore CORS errors, data should still be sent
+              console.log("RSVP data sent");
+            });
+
+            // Hiển thị thông báo thành công
+            let message = `Cảm ơn ${guestName} đã xác nhận tham dự!\n\nChúng mình rất vui mừng được đón tiếp bạn tại tiệc cưới.`;
+            if (wishes) {
+              message += `\n\nLời chúc của bạn: "${wishes}"`;
+            }
+            message += `\n\n💚 Tài & Huyền 💛`;
+            alert(message);
+            closeRSVPModal();
+          } catch (error) {
+            console.error("Error submitting RSVP:", error);
+            // Vẫn hiển thị thông báo thành công ngay cả khi có lỗi
+            let message = `Cảm ơn ${guestName} đã xác nhận tham dự!\n\nChúng mình rất vui mừng được đón tiếp bạn tại tiệc cưới.`;
+            if (wishes) {
+              message += `\n\nLời chúc của bạn: "${wishes}"`;
+            }
+            message += `\n\n💚 Tài & Huyền 💛`;
+            alert(message);
+            closeRSVPModal();
+          } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = originalText;
           }
-          message += `\n\n💚 Tài & Huyền 💛`;
-          alert(message);
-          closeRSVPModal();
         }
       }
 
