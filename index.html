@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tài & Huyền - 10.01.2026</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts with Vietnamese Support -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --moss-green: rgba(53, 94, 59, 1);
+        --moss-dark: #2c4a33;
+        --gold: #d4af37;
+        --gold-light: #c5a880;
+        --sage: #8b9d83;
+        --mint: #e8f1e8;
+        --cream: #faf8f5;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--cream);
+        color: var(--moss-dark);
+        overflow-x: hidden;
+      }
+
+      .font-playfair {
+        font-family: "Playfair Display", serif;
+      }
+
+      .font-script {
+        font-family: "Great Vibes", cursive;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        background-image: url("./images/7U6A9826.JPG");
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgb(1 4 2 / 75%) 0%,
+          rgb(1 10 2 / 65%) 100%
+        );
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        padding: 3rem;
+        max-width: 600px;
+        text-align: right;
+      }
+
+      @media (max-width: 768px) {
+        .hero-section {
+          background-attachment: scroll;
+          justify-content: center;
+        }
+
+        .hero-content {
+          text-align: center;
+          padding: 2rem;
+        }
+      }
+
+      /* Botanical Decorations */
+      .leaf-divider {
+        width: 80px;
+        height: 2px;
+        background: var(--gold);
+        margin: 1.5rem auto;
+        position: relative;
+      }
+
+      .leaf-divider::before,
+      .leaf-divider::after {
+        content: "❦";
+        position: absolute;
+        color: var(--gold);
+        font-size: 1.2rem;
+        top: -10px;
+      }
+
+      .leaf-divider::before {
+        left: -25px;
+      }
+
+      .leaf-divider::after {
+        right: -25px;
+      }
+
+      /* Animation Classes */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .slide-left {
+        opacity: 0;
+        transform: translateX(-80px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .slide-left.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .slide-right {
+        opacity: 0;
+        transform: translateX(80px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .slide-right.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .scale-rotate {
+        opacity: 0;
+        transform: scale(0) rotate(-180deg);
+        transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .scale-rotate.active {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+
+      .stagger-1 {
+        transition-delay: 0s;
+      }
+      .stagger-2 {
+        transition-delay: 0.15s;
+      }
+      .stagger-3 {
+        transition-delay: 0.3s;
+      }
+      .stagger-4 {
+        transition-delay: 0.45s;
+      }
+      .stagger-5 {
+        transition-delay: 0.6s;
+      }
+      .stagger-6 {
+        transition-delay: 0.75s;
+      }
+      .stagger-7 {
+        transition-delay: 0.9s;
+      }
+      .stagger-8 {
+        transition-delay: 1.05s;
+      }
+      .stagger-9 {
+        transition-delay: 1.2s;
+      }
+      .stagger-10 {
+        transition-delay: 1.35s;
+      }
+
+      /* Gallery */
+      .gallery-grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: 1fr;
+      }
+
+      @media (min-width: 640px) {
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .gallery-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        aspect-ratio: 4/3;
+        box-shadow: 0 4px 15px rgba(44, 74, 51, 0.15);
+        transition: all 0.4s ease;
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(44, 74, 51, 0.25);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-item::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          180deg,
+          transparent 60%,
+          rgba(44, 74, 51, 0.4) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .gallery-item:hover::after {
+        opacity: 1;
+      }
+
+      /* Countdown */
+      .countdown-box {
+        background: white;
+        border: 2px solid var(--gold);
+        border-radius: 12px;
+        padding: 1.5rem;
+        min-width: 100px;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+      }
+
+      .countdown-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--moss-green);
+        font-family: "Playfair Display", serif;
+      }
+
+      /* Buttons */
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--moss-green) 0%,
+          var(--moss-dark) 100%
+        );
+        color: white;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        box-shadow: 0 4px 15px rgba(53, 94, 59, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(53, 94, 59, 0.4);
+        background: linear-gradient(
+          135deg,
+          var(--moss-dark) 0%,
+          var(--moss-green) 100%
+        );
+      }
+
+      .btn-gold {
+        background: linear-gradient(
+          135deg,
+          var(--gold) 0%,
+          var(--gold-light) 100%
+        );
+        color: var(--moss-dark);
+      }
+
+      .btn-gold:hover {
+        background: linear-gradient(
+          135deg,
+          var(--gold-light) 0%,
+          var(--gold) 100%
+        );
+      }
+
+      /* Venue Card */
+      .venue-card {
+        background: white;
+        border-left: 4px solid var(--gold);
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(44, 74, 51, 0.1);
+      }
+
+      /* Section Styling */
+      section {
+        padding: 5rem 1.5rem;
+      }
+
+      @media (min-width: 768px) {
+        section {
+          padding: 6rem 2rem;
+        }
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--moss-green);
+        margin-bottom: 1rem;
+        font-family: "Playfair Display", serif;
+      }
+
+      @media (min-width: 768px) {
+        .section-title {
+          font-size: 3.5rem;
+        }
+      }
+
+      /* Heart Animation */
+      .heart {
+        display: inline-block;
+        font-size: 4rem;
+        color: var(--gold);
+      }
+
+      @media (min-width: 768px) {
+        .heart {
+          font-size: 5rem;
+        }
+      }
+
+      /* Background Patterns */
+      .bg-pattern {
+        background-image: radial-gradient(
+            circle at 20% 50%,
+            rgba(139, 157, 131, 0.05) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(212, 175, 55, 0.05) 0%,
+            transparent 50%
+          );
+      }
+
+      .bg-moss {
+        background: linear-gradient(
+          135deg,
+          var(--moss-green) 0%,
+          var(--moss-dark) 100%
+        );
+      }
+
+      /* Section with Background Image */
+      .section-bg-image {
+        position: relative;
+        background-size: cover;
+        background-position: center 60%;
+        background-repeat: no-repeat;
+      }
+
+      .section-bg-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgb(1 4 2 / 75%) 0%,
+          rgb(1 10 2 / 65%) 100%
+        );
+      }
+
+      .section-bg-content {
+        position: relative;
+        z-index: 10;
+      }
+
+      /* Small Background Image Section */
+      .section-small-bg {
+        position: relative;
+        background-size: cover;
+        background-position: center 40%;
+        background-repeat: no-repeat;
+        min-height: 200px;
+        padding: 2rem 1.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .section-small-bg {
+          min-height: 250px;
+          padding: 2.5rem 2rem;
+        }
+      }
+
+      /* Image Fallback */
+      .img-fallback {
+        background: linear-gradient(135deg, var(--sage) 0%, var(--mint) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: var(--moss-green);
+      }
+
+      /* Alternating Image Sections */
+      .section-with-image {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      @media (min-width: 768px) {
+        .section-with-image {
+          grid-template-columns: 1fr 1fr;
+          gap: 3rem;
+        }
+
+        .section-image-left {
+          order: 1;
+        }
+
+        .section-content-left {
+          order: 2;
+        }
+
+        .section-image-right {
+          order: 2;
+        }
+
+        .section-content-right {
+          order: 1;
+        }
+      }
+
+      .section-image {
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(44, 74, 51, 0.2);
+        aspect-ratio: 4/3;
+      }
+
+      .section-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      .section-image:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Mobile adjustments for alternating sections */
+      @media (max-width: 767px) {
+        .section-with-image {
+          gap: 2rem;
+        }
+
+        .section-content-left,
+        .section-content-right {
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-overlay"></div>
+      <div class="hero-content reveal">
+        <p
+          class="text-lg md:text-xl font-light tracking-widest mb-4 opacity-90"
+          style="color: var(--gold)"
+        >
+          Welcome to our wedding
+        </p>
+        <h1
+          class="font-script text-6xl md:text-8xl text-white mb-6 text-center"
+        >
+          Văn Tài <br />& <br />Ánh Huyền
+        </h1>
+        <div
+          class="leaf-divider"
+          style="background: white; margin: 2rem auto"
+        ></div>
+        <p class="text-white text-xl md:text-2xl font-playfair tracking-wide">
+          Thứ Bảy<br />
+          <span
+            class="text-3xl md:text-4xl font-semibold"
+            style="color: var(--gold)"
+            >10 • 01 • 2026</span
+          ><br />
+          11:00 Sáng
+        </p>
+      </div>
+    </section>
+
+    <!-- Couple Names Section -->
+    <section class="bg-pattern">
+      <div class="max-w-6xl mx-auto text-center">
+        <h2 class="section-title">Chú Rể & Cô Dâu</h2>
+        <div class="leaf-divider"></div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center mt-12"
+        >
+          <!-- Groom -->
+          <div class="slide-left">
+            <h3
+              class="font-script text-5xl md:text-6xl mb-4"
+              style="color: var(--moss-green)"
+            >
+              Văn Tài
+            </h3>
+            <p class="text-lg font-playfair text-gray-600">Chú Rể</p>
+            <p class="text-sm mt-2 text-gray-500">Nguyễn Văn Tài</p>
+          </div>
+
+          <!-- Heart -->
+          <div class="scale-rotate my-8 md:my-0">
+            <div class="heart">♥</div>
+          </div>
+
+          <!-- Bride -->
+          <div class="slide-right">
+            <h3
+              class="font-script text-5xl md:text-6xl mb-4"
+              style="color: var(--moss-green)"
+            >
+              Ánh Huyền
+            </h3>
+            <p class="text-lg font-playfair text-gray-600">Cô Dâu</p>
+            <p class="text-sm mt-2 text-gray-500">Trần Thị Ánh Huyền</p>
+          </div>
+        </div>
+
+        <div class="reveal mt-12">
+          <p
+            class="font-playfair text-lg md:text-xl italic text-gray-600 max-w-2xl mx-auto"
+          >
+            "Tình yêu không làm cho thế giới quay tròn.<br />
+            Tình yêu là điều làm cho chuyến đi đáng giá."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Date & Countdown Section -->
+    <section
+      class="section-bg-image text-white"
+      style="background-image: url('./images/7U6A1553.JPG')"
+    >
+      <div class="section-bg-overlay"></div>
+      <div class="section-bg-content">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="section-title text-white reveal text-center">
+            Ngày Vui Của Chúng Tôi
+          </h2>
+          <div class="leaf-divider" style="background: var(--gold)"></div>
+
+          <div class="text-center mt-12">
+            <div class="reveal mt-8">
+              <p class="text-2xl md:text-3xl font-playfair mb-4">
+                Thứ Bảy • 10 Tháng 01 • 2026 • 11:00 Sáng
+              </p>
+            </div>
+
+            <div
+              class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto"
+            >
+              <div class="countdown-box reveal stagger-1">
+                <div class="countdown-number" id="days">00</div>
+                <div
+                  class="text-sm md:text-base font-semibold"
+                  style="color: var(--moss-green)"
+                >
+                  NGÀY
+                </div>
+              </div>
+              <div class="countdown-box reveal stagger-2">
+                <div class="countdown-number" id="hours">00</div>
+                <div
+                  class="text-sm md:text-base font-semibold"
+                  style="color: var(--moss-green)"
+                >
+                  GIỜ
+                </div>
+              </div>
+              <div class="countdown-box reveal stagger-3">
+                <div class="countdown-number" id="minutes">00</div>
+                <div
+                  class="text-sm md:text-base font-semibold"
+                  style="color: var(--moss-green)"
+                >
+                  PHÚT
+                </div>
+              </div>
+              <div class="countdown-box reveal stagger-4">
+                <div class="countdown-number" id="seconds">00</div>
+                <div
+                  class="text-sm md:text-base font-semibold"
+                  style="color: var(--moss-green)"
+                >
+                  GIÂY
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <!-- Image folder structure:
+         /images/
+           7U6A9826.JPG   ← main hero background
+           7U6A0228.JPG … 7U6A9504.JPG (10 photos for gallery)
+    -->
+    <section class="bg-pattern">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="section-title text-center reveal">
+          Khoảnh Khắc Của Chúng Tôi
+        </h2>
+        <div class="leaf-divider"></div>
+
+        <div class="gallery-grid mt-12">
+          <div class="gallery-item reveal stagger-1">
+            <img
+              src="./images/7U6A0228.JPG"
+              alt="Ảnh cưới Tài và Huyền"
+              loading="lazy"
+              onerror="this.parentElement.innerHTML='<div class=\'img-fallback w-full h-full\'>❦</div>'"
+            />
+          </div>
+          <div class="gallery-item reveal stagger-2">
+            <img
+              src="./images/7U6A1553.JPG"
+              alt="Ảnh cưới Tài và Huyền"
+              loading="lazy"
+              onerror="this.parentElement.innerHTML='<div class=\'img-fallback w-full h-full\'>❦</div>'"
+            />
+          </div>
+          <div class="gallery-item reveal stagger-3">
+            <img
+              src="./images/7U6A0350.JPG"
+              alt="Ảnh cưới Tài và Huyền"
+              loading="lazy"
+              onerror="this.parentElement.innerHTML='<div class=\'img-fallback w-full h-full\'>❦</div>'"
+            />
+          </div>
+          <div class="gallery-item reveal stagger-4">
+            <img
+              src="./images/7U6A1332 (1).JPG"
+              alt="Ảnh cưới Tài và Huyền"
+              loading="lazy"
+              onerror="this.parentElement.innerHTML='<div class=\'img-fallback w-full h-full\'>❦</div>'"
+            />
+          </div>
+          <div class="gallery-item reveal stagger-5">
+            <img
+              src="./images/7U6A1466.JPG"
+              alt="Ảnh cưới Tài và Huyền"
+              loading="lazy"
+              onerror="this.parentElement.innerHTML='<div class=\'img-fallback w-full h-full\'>❦</div>'"
+            />
+          </div>
+          <div class="gallery-item reveal stagger-6">
+            <img
+              src="./images/7U6A2517.JPG"
+              alt="Ảnh cưới Tài và Huyền"
+              loading="lazy"
+              onerror="this.parentElement.innerHTML='<div class=\'img-fallback w-full h-full\'>❦</div>'"
+            />
+          </div>
+          <div class="gallery-item reveal stagger-7">
+            <img
+              src="./images/7U6A8909.JPG"
+              alt="Ảnh cưới Tài và Huyền"
+              loading="lazy"
+              onerror="this.parentElement.innerHTML='<div class=\'img-fallback w-full h-full\'>❦</div>'"
+            />
+          </div>
+          <div class="gallery-item reveal stagger-8">
+            <img
+              src="./images/7U6A9099.JPG"
+              alt="Ảnh cưới Tài và Huyền"
+              loading="lazy"
+              onerror="this.parentElement.innerHTML='<div class=\'img-fallback w-full h-full\'>❦</div>'"
+            />
+          </div>
+          <div class="gallery-item reveal stagger-9">
+            <img
+              src="./images/7U6A9487.JPG"
+              alt="Ảnh cưới Tài và Huyền"
+              loading="lazy"
+              onerror="this.parentElement.innerHTML='<div class=\'img-fallback w-full h-full\'>❦</div>'"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section style="background: var(--mint)">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="section-title text-center reveal">Địa Điểm Tổ Chức</h2>
+        <div class="leaf-divider"></div>
+
+        <div class="venue-card reveal mt-12">
+          <h3
+            class="font-playfair text-2xl md:text-3xl font-bold mb-4"
+            style="color: var(--moss-green)"
+          >
+            Trung Tâm Hội Nghị & Tiệc Cưới
+          </h3>
+          <p
+            class="text-xl md:text-2xl font-semibold mb-3"
+            style="color: var(--gold)"
+          >
+            Phòng Ngọc Lan
+          </p>
+          <p class="text-lg text-gray-700 leading-relaxed">
+            📍 123 Đường Lê Lợi, Phường Bến Nghé<br />
+            Quận 1, Thành phố Hồ Chí Minh<br />
+            Việt Nam
+          </p>
+          <div class="mt-6">
+            <p class="text-base text-gray-600">
+              ⏰ Thời gian: <strong>11:00 Sáng, Thứ Bảy, 10/01/2026</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Small Background Image Section -->
+    <section
+      class="section-small-bg"
+      style="background-image: url('./images/7U6A8646.JPG')"
+    ></section>
+
+    <!-- RSVP Section -->
+    <section class="bg-pattern">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="section-title reveal">Xác Nhận Tham Dự</h2>
+        <div class="leaf-divider"></div>
+
+        <div class="reveal mt-8">
+          <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
+            Sự hiện diện của quý khách là niềm vinh hạnh cho gia đình chúng
+            tôi.<br />
+            Vui lòng xác nhận tham dự trước ngày <strong>25/12/2025</strong>.
+          </p>
+
+          <button onclick="handleRSVP()" class="btn-primary btn-gold text-lg">
+            Xác Nhận Ngay ✨
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing Section -->
+    <section class="bg-moss text-white text-center">
+      <div class="max-w-4xl mx-auto reveal">
+        <p class="text-lg md:text-xl mb-6 leading-relaxed">
+          Chúng tôi rất mong được chia sẻ niềm hạnh phúc này cùng quý khách.<br />
+          Cảm ơn quý khách đã luôn ở bên và chúc phúc cho chúng tôi.
+        </p>
+
+        <div class="leaf-divider" style="background: var(--gold)"></div>
+
+        <h3
+          class="font-script text-5xl md:text-6xl my-8"
+          style="color: var(--gold)"
+        >
+          Tài & Huyền
+        </h3>
+
+        <p class="text-2xl md:text-3xl font-playfair tracking-widest">
+          10 • 01 • 2026
+        </p>
+
+        <div class="mt-12 text-6xl">❦</div>
+      </div>
+    </section>
+
+    <script>
+      // Countdown Timer
+      function updateCountdown() {
+        const weddingDate = new Date("2026-01-10T11:00:00").getTime();
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        if (distance > 0) {
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          document.getElementById("days").textContent = String(days).padStart(
+            2,
+            "0"
+          );
+          document.getElementById("hours").textContent = String(hours).padStart(
+            2,
+            "0"
+          );
+          document.getElementById("minutes").textContent = String(
+            minutes
+          ).padStart(2, "0");
+          document.getElementById("seconds").textContent = String(
+            seconds
+          ).padStart(2, "0");
+        } else {
+          document.getElementById("days").textContent = "00";
+          document.getElementById("hours").textContent = "00";
+          document.getElementById("minutes").textContent = "00";
+          document.getElementById("seconds").textContent = "00";
+        }
+      }
+
+      // Update countdown every second
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // Intersection Observer for Scroll Animations
+      const observerOptions = {
+        threshold: 0.2,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all elements with animation classes
+      document.addEventListener("DOMContentLoaded", () => {
+        const elementsToAnimate = document.querySelectorAll(
+          ".reveal, .slide-left, .slide-right, .scale-rotate"
+        );
+        elementsToAnimate.forEach((el) => observer.observe(el));
+
+        // Trigger hero animation immediately
+        setTimeout(() => {
+          document.querySelector(".hero-content").classList.add("active");
+        }, 300);
+      });
+
+      // RSVP Function
+      function handleRSVP() {
+        alert(
+          "Cảm ơn quý khách đã xác nhận tham dự!\n\nChúng tôi rất vui mừng được đón tiếp quý khách tại tiệc cưới.\n\n💚 Tài & Huyền 💛"
+        );
+      }
+
+      // Smooth Scroll for Better UX
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
