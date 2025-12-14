@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/nha-trai",
+      "dest": "/index-nha-trai.html"
+    },
+    {
+      "src": "/index-nha-trai.html",
+      "dest": "/index-nha-trai.html"
+    }
+  ]
+}

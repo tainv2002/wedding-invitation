@@ -1,0 +1,16 @@
+{
+  "name": "wedding-invitation",
+  "version": "1.0.0",
+  "description": "Wedding invitation website for Tài & Huyền",
+  "scripts": {
+    "deploy": "vercel --prod",
+    "deploy:dev": "vercel"
+  },
+  "keywords": [
+    "wedding",
+    "invitation"
+  ],
+  "author": "",
+  "license": "ISC"
+}
+
